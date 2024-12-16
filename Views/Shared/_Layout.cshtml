@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Film Gezegeni</title>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+	<link href="/css/global.css" rel="stylesheet">
+	<link href="/css/index.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+    <header>
+
+		<section id="top">
+			<div class="container">
+				<div class="row top_1">
+					<div class="col-md-3">
+						<div class="top_1l pt-1">
+							<h3 class="mb-0">
+								<a  asp-controller="Home" asp-action="Index">
+									<i class="fa fa-video-camera col_red me-1"></i> Film Gezegeni</>
+
+									</a>
+							</h3>
+						</div>
+					</div>
+				</div>
+
+			</div>
+		</section>
+
+		<section id="header">
+			<nav class="navbar navbar-expand-md navbar-light" id="navbar_sticky">
+				<div class="container">
+					<a class="navbar-brand text-white fw-bold" href="/"><i class="fa fa-video-camera col_red me-1"></i> Film Gezegeni</a>
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+					<div class="col-md-4">
+						<div class="footer_1r">
+							<ul class="mb-0">
+								<li class="d-inline-block me-2"><a href="/">Anasayfa</a></li>
+								<li class="d-inline-block me-2"><a href="/home/team">Ekibimiz</a></li>
+								<li class="d-inline-block me-2"><a href="/home/contact">Bize Ulaşın</a></li>
+
+						    </ul>
+					    </div>
+					</div>
+					<div>
+						@if (ViewData["UserName"] != null)
+						{
+							<span>Hoşgeldin! @ViewData["UserName"] </span>
+							<a href="/home/cikis">çıkış yap</a>
+						}
+						else
+						{
+							<a class="nav-link text-white" href="/home/login">Giriş Yap</a>
+						}
+					</div>
+				</div>
+			</nav>
+		</section>
+
+    </header>
+    <div class="container" style="max-width:100%">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

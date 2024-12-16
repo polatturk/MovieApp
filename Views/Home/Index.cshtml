@@ -1,0 +1,1331 @@
+﻿ @model Api.Models.MoviesViewModel
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Film Gezegeni</title>
+	<link href="~/lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+	@* <link href="css/font-awesome.min.css" rel="stylesheet"> *@
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+	<link href="/css/global.css" rel="stylesheet">
+	<link href="/css/index.css" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Rajdhani&display=swap" rel="stylesheet">
+	<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+</head>
+<body>
+	<section id="center" class="center_home">
+		<div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
+			<div class="carousel-indicators">
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2" class="" aria-current="true"></button>
+				<button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+			</div>
+			<div class="carousel-inner" id="CarouselMovies">
+				@{
+					int i = 0;
+				}
+				@foreach (var movie in Model.CarouselMovies)
+				{
+					if (movie.Type == "CarouselMovies")
+					{
+						<div class="carousel-item @(i == 0 ? "active" : "")">
+							<img src="/img/@(i + 1).jpg" class="d-block w-100">
+							<div class="carousel-caption d-md-block">
+								<h1 class="font_60">@movie.Name</h1>
+								<h6 class="mt-3">
+									<span class="col_red me-3">
+										<i class="fas fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+										<i class="fa fa-star"></i>
+									</span>
+									4.5 (Imdb)      Yıl : @movie.Year
+									<a class="bg_red p-2 pe-4 ps-4 ms-3 text-white d-inline-block">Aksiyon / Bilim Kurgu / Macera</a>
+								</h6>
+								<p class="mt-3">@movie.Summary</p>
+								<p class="mb-2"><span class="col_red me-1 fw-bold">Oyuncular:</span> @movie.Actors</p>
+								<p class="mb-2"><span class="col_red me-1 fw-bold">Yönetmen:</span> @movie.Director</p>
+								<p><span class="col_red me-1 fw-bold">Süre:</span> 3:12:38</p>
+								<h6 class="mt-4"><a class="button" href="https://www.youtube.com/watch?v=dbut5whNvM0" target="_blank"><i class="fa fa-play-circle align-middle me-1"></i> Fragmanı İzle</a></h6>
+							</div>
+						</div>
+						i++;
+					}
+				}
+			</div>
+
+			<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Previous</span>
+			</button>
+			<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="visually-hidden">Next</span>
+			</button>
+		</div>
+	</section>
+
+<section id="trend" class="pt-4 pb-5">
+		<div class="container">
+			<div class="row trend_1">
+				<div class="col-md-6 col-6">
+					<div class="trend_1l">
+						<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> En Son Eklenen <span class="col_red">Filmler</span></h4>
+					</div>
+				</div>
+				<!-- <div class="col-md-6 col-6">
+				 <div class="trend_1r text-end">
+				   <h6 class="mb-0"><a class="button" href="#"> View All</a></h6>
+				 </div>
+				</div> -->
+			</div>
+<div class="row trend_2 mt-4">
+@*     <div id="carouselExampleCaptions1" class="carousel slide" data-bs-ride="carousel">
+ *@        @* <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions1" data-bs-slide-to="1" aria-label="Slide 2" class="" aria-current="true"></button>
+        </div> *@
+        <div class="carousel-inner" id="BannerMovies">
+            @{
+                int a = 0;
+            }
+            <div class="row">
+                @foreach (var movie in Model.BannerMovies)
+                {
+                    <div class="col-md-3 col-6">
+                        <div class="trend_2im clearfix position-relative">
+                            <div class="trend_2im1 clearfix">
+                                <div class="grid">
+                                    <figure class="effect-jazz mb-0">
+                                        <a href="/Home/BlogDetail/@movie.Id" target="_blank">
+                                            <img src="img/@(a + 4).jpg" class="d-block w-100" alt="@movie.Name">
+                                        </a>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+                                <span class="fs-1">
+                                    <a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank">
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="trend_2ilast bg_grey p-3 clearfix">
+                            <h5>
+                                <a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank">
+                                    @movie.Name
+                                </a>
+                            </h5>
+                            <p class="mb-2">@movie.Summary</p>
+                            <span class="col_red">
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                                <i class="fa fa-star"></i>
+                            </span>
+                        </div>
+                    </div>
+                    a++;
+                    
+                    if (a % 4 == 0)
+                    {
+                        <div></div class="row">
+                    }
+                }
+            </div>
+        </div>
+    @* </div> *@
+</div>
+
+		</div>
+	</section>
+
+	<section id="upcome" class="pt-4 pb-5">
+		<div class="container">
+			<div class="row trend_1">
+				<div class="col-md-6 col-6">
+					<div class="trend_1l">
+						<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Yakında <span class="col_red">Vizyona Girecekler</span></h4>
+					</div>
+				</div>
+				<div class="col-md-6 col-6">
+				</div>
+			</div>
+			<div class="row trend_2 mt-4">
+@* 				<div id="carouselExampleCaptions2" class="carousel slide" data-bs-ride="carousel">
+ *@					@* <div class="carousel-indicators">
+						<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="0" class="active" aria-label="Slide 1"></button>
+						<button type="button" data-bs-target="#carouselExampleCaptions2" data-bs-slide-to="1" aria-label="Slide 2" class="" aria-current="true"></button>
+					</div> *@
+					<div id="FeatureMovies" class="carousel-inner">
+						@{
+							int x = 0; 
+						}
+						@foreach (var movie in Model.FeatureMovies)
+						{
+							<div class="carousel-item active">
+							<div class="trend_2i row">
+								<div class="col-md-4">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+													<a href="/Home/BlogDetail/@movie.Id" target="_blank"><img src="img/@(x + 12).jpg" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+											<span class="fs-1"><a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank"><i class="fa fa-youtube-play"></i></a></span>
+										</div>
+									</div>
+									<div class="trend_2ilast bg_grey p-3 clearfix">
+										<h5><a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank">@movie.Name</a></h5>
+										<p class="mb-2">@movie.Summary </p>
+										<span class="col_red">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+													<a href="/Home/BlogDetail/@movie.Id" target="_blank"><img src="img/@(x + 13).jpg" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+											<span class="fs-1"><a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank"><i class="fa fa-youtube-play"></i></a></span>
+										</div>
+									</div>
+									<div class="trend_2ilast bg_grey p-3 clearfix">
+										<h5><a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank"> @movie.Name</a></h5>
+										<p class="mb-2">@movie.Summary </p>
+										<span class="col_red">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</span>
+									</div>
+								</div>
+								<div class="col-md-4">
+									<div class="trend_2im clearfix position-relative">
+										<div class="trend_2im1 clearfix">
+											<div class="grid">
+												<figure class="effect-jazz mb-0">
+													<a href="/Home/BlogDetail/@movie.Id" target="_blank"><img src="img/@(x + 14).jpg" class="w-100" alt="img25"></a>
+												</figure>
+											</div>
+										</div>
+										<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+											<span class="fs-1"><a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank"><i class="fa fa-youtube-play"></i></a></span>
+										</div>
+									</div>
+									<div class="trend_2ilast bg_grey p-3 clearfix">
+										<h5><a class="col_red" href="/Home/BlogDetail/@movie.Id" target="_blank">@movie.Name</a></h5>
+										<p class="mb-2">@movie.Summary</p>
+										<span class="col_red">
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+											<i class="fa fa-star"></i>
+										</span>
+									</div>
+								</div>
+
+							</div>
+						 </div>
+
+							@* <div class="carousel-item">
+								<div class="trend_2i row"> *@
+
+@* 									<div class="col-md-4">
+										<div class="trend_2im clearfix position-relative">
+											<div class="trend_2im1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=I3X4EZELxqY" target="_blank"><img src="img/@(x + 15).jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+												<span class="fs-1"><a class="col_red" href="https://www.youtube.com/watch?v=I3X4EZELxqY" target="_blank"><i class="fa fa-youtube-play"></i></a></span>
+											</div>
+										</div>
+										<div class="trend_2ilast bg_grey p-3 clearfix">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=I3X4EZELxqY" target="_blank">@movie.Name</a></h5>
+											<p class="mb-2">@movie.Summary</p>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+										</div>
+									</div> *@
+									@* <div class="col-md-4">
+										<div class="trend_2im clearfix position-relative">
+											<div class="trend_2im1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=NRXZDg_SYt8" target="_blank"><img src="img/16.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+												<span class="fs-1"><a class="col_red" href="https://www.youtube.com/watch?v=NRXZDg_SYt8" target="_blank"><i class="fa fa-youtube-play"></i></a></span>
+											</div>
+										</div>
+										<div class="trend_2ilast bg_grey p-3 clearfix">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=NRXZDg_SYt8" target="_blank">Kaçamak </a></h5>
+											<p class="mb-2">Kate, Beth’in en yakın arkadaşıdır. Kate’in eski sevgilisiyle olan ilişkisinin bitmesinin ardından toparlamasını sağlamak amacıyla Beth, Hırvatistan’da onu bir tatile götürür. Kate’in ise eski sevgilisinin kredi kartına hâlâ erişimi bulunmaktadır. Dolayısıyla tatili eski sevgilisi karşılamaktadır. Beth, eşi Rob’u ve yeni doğmuş bebeğini arayıp görüntülü konuşmak istemesine rağmen Kate, Beth’i çılgın bir hafta sonu tatili için zorlamaktadır</p>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+										</div>
+									</div> *@
+									@* <div class="col-md-4">
+										<div class="trend_2im clearfix position-relative">
+											<div class="trend_2im1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=h0zqe_As_qo" target="_blank"><img src="img/17.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="trend_2im2 clearfix text-center position-absolute w-100 top-0">
+												<span class="fs-1"><a class="col_red" href="https://www.youtube.com/watch?v=h0zqe_As_qo" target="_blank"><i class="fa fa-youtube-play"></i></a></span>
+											</div>
+										</div>
+
+										<div class="trend_2ilast bg_grey p-3 clearfix">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=h0zqe_As_qo" target="_blank"> Derin Sular</a></h5>
+											<p class="mb-2">Melinda Van Allen isminde bir kadın, Vic adındaki bir erkekle evlenir. Çift, birbirlerini çok sevmiştir. Vic ve Melinda Van Allen, bu sevgiyi sürekli bir birliktelik ile taçlandırmak için evlenmiştir. Evliliğin ilk dönemleri, son derece renkli ve heyecanlı geçer. Vic ve Melinda Van Allen’in Trixie adında bir de çocukları olur. Fakat yıllar geçtikçe, çiftin birbirlerine olan ilgisi azalır.Bir zamanlar sevgi ve heyecanın eksik olmadığı evlilik, artık sıradanlık, sıkıcılık ve monotonluk ile doludur. </p>
+											<span class="col_red">
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+												<i class="fa fa-star"></i>
+											</span>
+										</div>
+									</div> *@
+@* 								</div>
+							</div>
+ *@						}
+					
+						</div>
+@* 					</div>
+ *@				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="popular" class="pt-4 pb-5 bg_grey">
+		<div class="container">
+			<div class="row trend_1">
+				<div class="col-md-12">
+					<div class="trend_1l">
+						<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i>  <span class="col_red">Trendler</span></h4>
+					</div>
+				</div>
+			</div>
+			<div class="row popular_1 mt-4">
+				<ul class="nav nav-tabs  border-0 mb-0">
+					<li class="nav-item">
+						<a href="#home" data-bs-toggle="tab" aria-expanded="false" class="nav-link active">
+							<span class="d-md-block">AKSİYON</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#profile" data-bs-toggle="tab" aria-expanded="true" class="nav-link">
+							<span class="d-md-block">MACERA </span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#settings" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+							<span class="d-md-block">KOMEDİ</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a href="#settings_o" data-bs-toggle="tab" aria-expanded="false" class="nav-link">
+							<span class="d-md-block">KORKU </span>
+						</a>
+					</li>
+
+				</ul>
+			</div>
+			<!-- aksiyon -->
+			<div class="popular_2 row mt-4">
+				<div class="tab-content">
+					<div class="tab-pane active" id="home">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=qgrVCix78kM" target="_blank"><img src="img/18.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+
+
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=qgrVCix78kM" target="_blank">Kasırgalar</a></h5>
+											<h6>Aksiyon / Dram / Gerilim / Macera</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre: 2:02:46</span></h6>
+											<p>Kate, emekli kasırga avcısı ve meteorolog. Kendisini çarpıcı hikayeye taşıyan Oklahoma'ya geri dönmesi için ikna edildi. Kate, çelişkili geçmişi olan, bir zamanlar büyüleyici doğa olayını inceleyen, hayatını hava durumu tahminlerine adayan bir kadındır. Ancak, geçmişi ona geri dönmesi sunulduğunda, karar verme zorunda kalır.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=qgrVCix78kM" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=1wiKclwSfGk" target="_blank"><img src="img/19.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=1wiKclwSfGk" target="_blank">Hızlı ve Öfkeli 10</a></h5>
+											<h6>Aksiyon / Gerilim / Suç</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2023 <span class="ms-2">Süre: 2:20:50</span></h6>
+											<p>Dom Toretto ve ailesi, birlik ve beraberliklerini sıkı sıkıya korumaları ve zor zamanlarda birbirlerine sımsıkı sarılmalarıyla izleyiciye güçlü aile değerlerinin önemini hatırlatıyorlar.Hernan Reyes’in oğlu intikam hırsı, bu hırsın onu neler yapabileceğine dahil olduğumuzda, kendimizi nefes kesici aksiyon dolu yolculukta buluyoruz. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=1wiKclwSfGk" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=45jGYBI2qPQ" target="_blank"><img src="img/20.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=45jGYBI2qPQ" target="_blank"> Attraction 2: İstila</a></h5>
+											<h6>Aksiyon / Bilim Kurgu / Dram</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2020 <span class="ms-2">Süre: 2:13:19</span></h6>
+											<p>Yabancı geminin düşüşünden sonra Julia'nın hayatı değişti, şimdi üç yıl sonra insanlık yeni bir karşılaşma yaşamaya hazır. Julia, yabancı geminin düşüşüyle birlikte dünyanın dengesinin ve insanların hayatının kökten değiştiğini gördü. Artık insanlığın karşılaşacağı yeni bir deneyim hazırlanıyor. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=45jGYBI2qPQ" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=eTSCXm_Uy_8" target="_blank"><img src="img/21.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=eTSCXm_Uy_8" target="_blank">Dehşet Yolcuları</a></h5>
+											<h6>Aksiyon / Gerilim</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre: 1:46:15</span></h6>
+											<p>Ölümcül patlamayı önlemek adına yola çıkan gayriresmi ekip, hayatlarını tehlikeye atan bu zorlu görevi yerine getirmek için mücadele ediyor. Bu ekip, dikkat çekici bir biçimde düzenlenmiş ve özenle seçilmiş kişilerden oluşuyor. 24 saat içinde, tehlike dolu çölün ortasından geçerek iki kamyon nitrogliserini taşımak zorundalar.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=eTSCXm_Uy_8" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- macera -->
+					<div class="tab-pane" id="profile">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=uq0bgtobWqI" target="_blank"><img src="img/22.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=uq0bgtobWqI" target="_blank"> Tomb Invader</a></h5>
+											<h6>Aksiyon / Macera / Tv Film</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2018 <span class="ms-2">Süre:: 1:23:07</span></h6>
+											<p>Ünlü arkeolog Alabama Channing, gizemli milyarder tarafından antik Çin eserini bulmak için işe alınır. Aradığı hazine, annesi kaybolmadan önce peşinde olduğu hazinedir. Fakat bu her zamanki macera perdesinin çok ötesinde bir durum.Sadece tarihin tozlu sayfalarını değil,annesinin kayboluşunun gizemini de çözmeli. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=uq0bgtobWqI" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=SPlih5cNzuc" target="_blank"><img src="img/23.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=SPlih5cNzuc" target="_blank"> Arıcı: Ölüm Kovanı</a></h5>
+											<h6>Aksiyon / Gerilim / Macera / Suç</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre:: 1:45:14</span></h6>
+											<p>Sersemletici bir hikaye ile karşı karşıyayız. Film, saf ve iyi kalpli bir ev sahibinin, bir dolandırıcılık oyununa kurban giderek intihar etmesiyle başlıyor. Bu trajik olay, eski "Beekeeper" ajanı Adam Clay'in, bu olayı gerçekleştirenlerden intikamını aldığı vahşi bir seferin başlangıcını belirliyor. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=SPlih5cNzuc" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=UyqJF7WkC-g" target="_blank"><img src="img/24.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=UyqJF7WkC-g" target="_blank"> Arrowhead</a></h5>
+											<h6>Aksiyon / Bilim Kurgu / Gizem / Macera</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2017 <span class="ms-2">Süre: 1:38:58</span></h6>
+											<p>Teknoloji uzmanı, devrimci lider tarafından hapisten çıkarılıyor.Lider, genç adamın babasını, planlanmış idamdan kurtarmak için fırsat sunuyor. Ancak bunun için veri hırsızlığı görevini başarıyla tamamlaması gerekiyor. Ancak işler beklediği gibi gitmiyor bu durum onu yabancı uzaylı ayında mahsur bırakıyor.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=UyqJF7WkC-g" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=MyOjzLEnxk8" target="_blank"><img src="img/25.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=MyOjzLEnxk8" target="_blank">On Fire</a></h5>
+											<h6>Aksiyon / Dram / Gerilim / Macera</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2023 <span class="ms-2">Süre: 1:20:18</span></h6>
+											<p>"Ormanın derinliklerinde bir karavan evde yaşayan bir aileyi takip eden bu hikaye, beklenmedik bir durumla karşı karşıya kalır: Aniden çıkan bir orman yangını. Hayatta kalma, artık onların en önemli amaçlarıdır." Bu film, izleyicisini baş döndürücü bir doğa dramının ortasına bırakıyor. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=MyOjzLEnxk8" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<!-- komedi -->
+					<div class="tab-pane" id="settings">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=PaKx4EzYaXg" target="_blank"><img src="img/26.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=PaKx4EzYaXg" target="_blank">Baba Parası</a></h5>
+											<h6>Komedi / Yerli</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2020 <span class="ms-2">Süre: 1:56:24</span></h6>
+											<p>Bu esrar dolu yapıt, ortak tek özelliklerinin babaları olduğu bir grup kardeşi konu alır. Karakterlerimiz, birbirine benzerlik göstermeyen, birbirinden oldukça farklı yaşamları olan ama aynı babayı paylaşan bu kardeşlerdir. Babalarının vefatı sonrası, onun serveti için rekabete girerler.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=PaKx4EzYaXg" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=sMHo7wrab7Q" target="_blank"><img src="img/27.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=sMHo7wrab7Q" target="_blank">Efsane</a></h5>
+											<h6>Komedi</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre: 1:47:00</span></h6>
+											<p>Babadan oğula geçen yoğurt tarifinden bahsediliyor. Ancak bu durum gerçekleşmediği zaman ailede lanet beliriyor. İkizler arasında hangisinin efsanenin bilgisini öğrenmeyi daha çok hak ettiği konusunda karar verilmeye çalışılıyor. 'Tariflerin babadan oğula geçecek şekilde saklanması gerektiği' fikrini sorguluyoruz. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=sMHo7wrab7Q" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=-8b3SzGv_hM" target="_blank"><img src="img/28.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=-8b3SzGv_hM" target="_blank"> Karımı Gördünüz Mü?</a></h5>
+											<h6>Komedi</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2018 <span class="ms-2">Süre: 1:25:01</span></h6>
+											<p>İş adamı Hakki Bey ve eşi, yaz tatiline çıkarlar. Hakki Bey'in otel ve yatları olmasına rağmen, eşi başka yerde tatil yapmayı tercih eder. Otelin yolunu tuttuklarında, misafirlerini kucak açarak karşılayan otel müdürü onları kapıda beklemektedir. Yoğun tempolu hayatına rağmen eşiyle bu tatili uzun zamandır planlıyordu.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=-8b3SzGv_hM" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=ZNYECfb31Hk" target="_blank"><img src="img/29.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=ZNYECfb31Hk" target="_blank">Lohusa</a></h5>
+											<h6>Komedi / Romantik</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre: 1:58:28</span></h6>
+											<p>"Lohusa", yeni doğan bebekle hayatlarının ilk 40 gününü geçirmeye çalışan anne ve babanın neşeli hikayesini anlatıyor.Hem anneliği hem de babalığı yeni keşfeden bu çiftin, aynı zamanda yaşamlarının bu yeni dönemine ayak uydurmaya çalışırken başlarına gelen komik, çoğu zaman trajikomik olayları konu alıyor.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=ZNYECfb31Hk" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<!-- korku -->
+					<div class="tab-pane" id="settings_o">
+						<div class="popular_2i row">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=iY1sowX-TQs" target="_blank"><img src="img/30.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+
+
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=iY1sowX-TQs" target="_blank">Starve Acre</a></h5>
+											<h6>Dram / Korku</h6>
+											<h6> Imdb 8.2  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre: 1:38:16</span></h6>
+											<p>her şeyin sakin ve huzurlu olduğu pastoral bir yaşamın, oğullarının beklenmedik davranışlarıyla çalkantıya uğraması üzerine kurulu. İyimser ve huzurlu bir aile yaşamının, oğullarının aniden anlaşılmaz bir şekilde davranışlarının değişmesiyle bozulması hikayenin temelini oluşturuyor.</p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=iY1sowX-TQs" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=GC59XzK1KeM" target="_blank"><img src="img/31.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=GC59XzK1KeM" target="_blank">Yem</a></h5>
+											<h6>Korku / Gerilim</h6>
+											<h6> Imdb 8.3  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2024 <span class="ms-2">Süre: 1:26:11</span></h6>
+											<p>Beş dostun, rüya gibi düğünün ardından yaşadığı kabus oluyor. Düşlerindeki birlikteliği kutlamak için yatla açıldıkları derin sularda, büyük uğraş vermek zorunda kalacaklarını kimse tahmin edemezdi. Kutlamalarda herkesin hayatın ne denli çabuk, acımasızca değişebileceğini hatırlatan bir olay oluveriyor. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=GC59XzK1KeM" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="popular_2i row mt-4">
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=TrnmDNpnHek" target="_blank"><img src="img/32.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=TrnmDNpnHek" target="_blank"> Mahzen</a></h5>
+											<h6>Korku</h6>
+											<h6> Imdb 8.4  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2023 <span class="ms-2">Süre: 1:32:07</span></h6>
+											<p>Genç kadın, eski metruk pubın mirasçısı olarak karşımıza çıkarıyor. İşin ilginç yanı pub'ın bodrumunda saklı kalmış bir sır, tabiatüstü varlık: Baghead. Korkutucu olduğu kadar ilginç yaratık Baghead, herkesin en derin, içten yürekli arzusunu gerçekleştirebilen yeteneğe sahip kaybettiğimiz sevdiklerimizle konuşma fırsatı sunuyor.  </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=TrnmDNpnHek" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="popular_2i1 row">
+									<div class="col-md-4 col-4">
+										<div class="popular_2i1lm position-relative clearfix">
+											<div class="popular_2i1lm1 clearfix">
+												<div class="grid">
+													<figure class="effect-jazz mb-0">
+														<a href="https://www.youtube.com/watch?v=VM8-bv6x7CU" target="_blank"><img src="img/33.jpg" class="w-100" alt="img25"></a>
+													</figure>
+												</div>
+											</div>
+											<div class="popular_2i1lm2 position-absolute top-0 w-100 text-center clearfix">
+											</div>
+										</div>
+									</div>
+									<div class="col-md-8 col-8">
+										<div class="popular_2i1r">
+											<h5><a class="col_red" href="https://www.youtube.com/watch?v=VM8-bv6x7CU" target="_blank"> Enna: Kara Büyü</a></h5>
+											<h6>Korku / Yerli</h6>
+											<h6> Imdb 8.6  <span class="ms-2"><i class="fa fa-star col_red me-1"></i></span> Yıl : 2021 <span class="ms-2">Süre: 1:05:49</span></h6>
+											<p>İki ayrı arkadaş topluluğu, daha önce yolları hiç kesişmemiş bu insanlar, kendilerini beklenmedik bir şekilde gizemli ve tedirgin edici bir ortamın içinde bulurlar. Başlangıçta aralarındaki huzursuz hava, zamanla yerini giderek artan korku ve açıklanması zor, doğaüstü olaylara bırakır. </p>
+											<h6 class="mb-0"><a class="button" href="https://www.youtube.com/watch?v=VM8-bv6x7CU" target="_blank"> Fragmanı İzle</a></h6>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	
+
+	<section id="play">
+		<div class="play_m clearfix">
+			<div class="container">
+				<div class="row trend_1">
+					<div class="col-md-12">
+						<div class="trend_1l">
+							<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> En İyi  <span class="col_red"> 10 Oynatma Listesi</span></h4>
+						</div>
+					</div>
+				</div>
+				<div class="play1 row mt-4 bg_grey pt-3 pb-3">
+					<div class="col-md-9">
+						<div class="play1l">
+							<div class="grid clearfix">
+								<figure class="effect-jazz mb-0">
+									<a href="https://www.youtube.com/watch?v=7BG-BpvkYB8" target="_blank"><img src="img/2.jpg" class="w-100" height="450" alt="abc"></a>
+								</figure>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-3 ps-0">
+						<div class="play1r">
+							<div class="play1ri">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+										<a href="https://www.youtube.com/watch?v=Qais2yDsBBk" target="_blank"><img src="img/4.jpg" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+										<a href="https://www.youtube.com/watch?v=BE1n8fLuODw" target="_blank"><img src="img/5.jpg" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+										<a href="https://www.youtube.com/watch?v=2aclhOeXkZI" target="_blank"><img src="img/6.jpg" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+										<a href="https://www.youtube.com/watch?v=xVbgjwtIWOc" target="_blank"><img src="img/7.jpg" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+										<a href="https://www.youtube.com/watch?v=b57d2kj1gUA" target="_blank"><img src="img/8.jpg" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+							<div class="play1ri mt-3">
+								<div class="grid clearfix">
+									<figure class="effect-jazz mb-0">
+										<a href="https://www.youtube.com/watch?v=OLBebob6M0M" target="_blank"><img src="img/9.jpg" class="w-100" alt="abc"></a>
+									</figure>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<!-- <section id="stream" class="pb-5 pt-4">
+	<div class="container">
+	 <div class="row trend_1">
+	  <div class="col-md-6 col-6">
+	   <div class="trend_1l">
+		<h4 class="mb-0"><i class="fa fa-youtube-play align-middle col_red me-1"></i> Movie   <span class="col_red">Streaming Services</span></h4>
+	   </div>
+	  </div>
+	  <div class="col-md-6 col-6">
+	   <div class="trend_1r text-end">
+		 <h6 class="mb-0"><a class="button" href="#"> View All</a></h6>
+	   </div>
+	  </div>
+	 </div>
+	 <div class="row trend_2 mt-4">
+	   <div id="carouselExampleCaptions4" class="carousel slide" data-bs-ride="carousel">
+	  <div class="carousel-indicators">
+		<button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+		<button type="button" data-bs-target="#carouselExampleCaptions4" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+	  </div>
+	  <div class="carousel-inner">
+		<div class="carousel-item active">
+		  <div class="trend_2i row">
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/4.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/5.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/6.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/7.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/8.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+		  </div>
+		</div>
+		<div class="carousel-item">
+		  <div class="trend_2i row">
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/9.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/10.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/11.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/4.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+			<div class="col">
+			  <div class="trend_2im clearfix position-relative">
+			   <div class="trend_2im1 clearfix">
+				 <div class="grid">
+			  <figure class="effect-jazz mb-0">
+				<a href="#"><img src="img/5.jpg" class="w-100" alt="img25"></a>
+			  </figure>
+		  </div>
+			   </div>
+			   <div class="trend_2im2 clearfix  position-absolute w-100 top-0">
+				 <h5><a class="col_red" href="#">Semper</a></h5>
+				<span class="col_red">
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			 <i class="fa fa-star"></i>
+			</span>
+			<p class="mb-0">2 Views</p>
+			   </div>
+			  </div>
+
+			</div>
+		  </div>
+		</div>
+
+	  </div>
+
+	</div>
+	 </div>
+	</div>
+	</section> -->
+	<section id="footer">
+		<div class="footer_m clearfix">
+			<div class="container">
+				<div class="row footer_1">
+					<div class="col-md-4">
+						<div class="footer_1i">
+							<h3><a class="text-white" href="index.html"><i class="fa fa-video-camera col_red me-1"></i> Film Gezegeni</a></h3>
+							<p class="mt-3"> </p>
+							<h6 class="fw-normal"><i class="fa fa-map-marker fs-5 align-middle col_red me-1"></i> Maslak Mahallesi, Taşyoncası Sokak, No: 1V ve No:1Y Bina Kodu: 34481742, 34398 Sarıyer/İstanbul</h6>
+							<h6 class="fw-normal mt-3"><i class="fa fa-envelope fs-5 align-middle col_red me-1"></i></h6>
+							<p class="mb-0">rabiiaoztturkk@gmail.com</p>
+							<p class="mb-0">polatturr52@gmail.com</p>
+							<p class="mb-0">melisamrkl1@gmail.com</p>
+
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="footer_1i">
+							<h4>Film <span class="col_red">Akışı</span></h4>
+							<div class="footer_1i1 row mt-4">
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=Qais2yDsBBk" target="_blank"><img src="img/4.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=BE1n8fLuODw" target="_blank"><img src="img/5.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=2aclhOeXkZI" target="_blank"><img src="img/6.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=xVbgjwtIWOc" target="_blank"><img src="img/7.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="footer_1i1 row mt-3">
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=b57d2kj1gUA" target="_blank"><img src="img/8.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=OLBebob6M0M" target="_blank"><img src="img/9.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=75esG8nCGfI" target="_blank"><img src="img/10.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-3 col-3">
+									<div class="footer_1i1i">
+										<div class="grid clearfix">
+											<figure class="effect-jazz mb-0">
+												<a href="https://www.youtube.com/watch?v=86JS7FgCCvA" target="_blank"><img src="img/11.jpg" height="70" class="w-100" alt="abc"></a>
+											</figure>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="footer_1i">
+							<h4>Bize  <span class="col_red">Ulaşın</span></h4>
+							<p class="mt-3">Mail adresinizi bize gönderin en kısa sürede birlikte başarı dolu adımlar atalım.</p>
+							<div class="input-group">
+								<input type="text" class="form-control bg-black" placeholder="Email">
+								<span class="input-group-btn">
+									<button class="btn btn text-white bg_red rounded-0 border-0" type="button">
+										Gönder
+									</button>
+								</span>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="footer_b" class="pt-3 pb-3 bg_grey">
+		<div class="container">
+			<div class="row footer_1">
+				<div class="col-md-8">
+					<div class="footer_1l">
+						<p class="mb-0">© 2024 Film Gezegeni </p>
+					</div>
+				</div>
+				<div class="col-md-4">
+						<div class="footer_1r">
+							<ul class="mb-0">
+								<li class="d-inline-block me-2"><a href="/">Anasayfa</a></li>
+								<li class="d-inline-block me-2"><a href="/home/team">Ekibimiz</a></li>
+								<li class="d-inline-block me-2"><a href="/home/contact">Bize Ulaşın</a></li>
+
+						    </ul>
+					    </div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<script>
+		window.onscroll = function () { myFunction() };
+
+		var navbar_sticky = document.getElementById("navbar_sticky");
+		var sticky = navbar_sticky.offsetTop;
+		var navbar_height = document.querySelector('.navbar').offsetHeight;
+
+		function myFunction() {
+			if (window.pageYOffset >= sticky + navbar_height) {
+				navbar_sticky.classList.add("sticky")
+				document.body.style.paddingTop = navbar_height + 'px';
+			} else {
+				navbar_sticky.classList.remove("sticky");
+				document.body.style.paddingTop = '0'
+			}
+		}
+	</script>
+
+</body>

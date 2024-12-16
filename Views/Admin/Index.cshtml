@@ -1,0 +1,76 @@
+﻿@using Model
+@model List<MovieModelResponse>
+@{
+    Layout = "_AdminLayout";
+}
+
+<h2>Film Düzenle</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col" width="15%">Film Fotoğrafı</th>
+            <th scope="col" width="20%">Film Adı</th>
+            <th scope="col" width="25%">Film Konusu</th>
+            <th scope="col" width="15%">Oyuncular</th>
+            <th scope="col" width="10%">Yönetmen</th>
+            <th scope="col" width="10%">Film Yılı</th>
+            <th scope="col" width="15%">Kategori</th>
+            <th scope="col" width="10%">İşlemler</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var movie in Model)
+        {
+            <tr>
+                <td>
+                    <img src="/img/@movie.Image" alt="Film Fotoğrafı" class="movie-image" />
+                </td>
+                <td>@movie.Name</td>
+                <td>@movie.Summary</td>
+                <td>@movie.Actors</td>
+                <td>@movie.Director</td>
+                <td>@movie.Year</td>
+                <td>@movie.CategoryName</td>
+                <td>
+                    <a href="/admin/edit/@movie.Id" class="btn btn-primary btn-sm">Düzenle</a>
+                    <a href="/admin/delete/@movie.Id" onclick="return confirm('Emin misiniz?')" class="btn btn-danger btn-sm">Sil</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<style>
+    .table {
+        width: 100%;
+        margin-bottom: 1rem;
+        color: #212529;
+    }
+
+        .table th, .table td {
+            padding: 0.75rem;
+            vertical-align: top;
+            border-top: 1px solid #dee2e6;
+        }
+
+        .table thead th {
+            vertical-align: bottom;
+            background-color: #f8f9fa;
+            border-bottom: 2px solid #dee2e6;
+        }
+
+    .movie-image {
+        max-width: 100px;
+        height: auto;
+        display: block;
+        margin: auto;
+    }
+
+    .btn-sm {
+        font-size: 0.875rem;
+        padding: 0.25rem 0.5rem;
+        line-height: 1.5;
+        border-radius: 0.2rem;
+    }
+</style>

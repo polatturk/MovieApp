@@ -1,0 +1,46 @@
+﻿<h2 class="mb-4">Film Düzenle</h2>
+
+<form class="row g-3" method="post" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Film Adı</label>
+        <input required type="text" id="Name" value="@Model.Name" class="form-control" name="Name" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="Imdb" class="form-label">Film Puanı (IMDB)</label>
+        <input required type="number" id="Imdb" step="0.1" value="@Model.Imdb" class="form-control" name="Imdb" min="1" max="10" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="Actors" class="form-label">Film Oyuncuları</label>
+        <input required type="text" id="Actors" value="@Model.Actors" class="form-control" name="Actors" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="Director" class="form-label">Film Yönetmeni</label>
+        <input required type="text" id="Director" value="@Model.Director" class="form-control" name="Director" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label for="Year" class="form-label">Film Yılı</label>
+        <input required type="number" id="Year" value="@Model.Year" class="form-control" name="Year" autocomplete="off">
+    </div>
+    <div class="mb-3">
+        <label class="form-label" for="CategoryId">Kategori</label>
+        <select required class="form-control" id="CategoryId" name="CategoryId">
+            <option value="1">Aksiyon</option>
+            <option value="3">Macera</option>
+            <option value="5">Komedi</option>
+            <option value="6">Korku</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="Summary" class="form-label">Film Konusu</label>
+        <textarea required id="Summary" class="form-control" name="Summary" rows="3" autocomplete="off">@Model.Summary</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="AdminComment" class="form-label">Site Eleştirisi</label>
+        <textarea required id="AdminComment" class="form-control" name="AdminComment" rows="3">@Model.AdminComment</textarea>
+    </div>
+    <div class="form-group">
+        <label for="ImgFile" class="form-label">Görsel Ekle:</label>
+        <input type="file" id="ImgFile" name="ImgFile" class="form-control-file">
+    </div>
+    <button type="submit" class="btn btn-success">Kaydet</button>
+</form>

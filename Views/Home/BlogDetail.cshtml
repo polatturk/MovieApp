@@ -1,0 +1,79 @@
+﻿@model MovieModel 
+
+   @if (Model != null)
+    {
+        <div class="foto-galeri">
+            <img src="/img/@Model.ImgUrl" alt="Image" class="foto-img" />
+        </div>
+        <div class=" ">
+            <h1 class="text-2xl font-bold pb-3">@Model.Name</h1>
+            @Html.Raw(Model.Summary)
+            <br></br>
+
+           
+         </div>  
+
+@*    @if (Model.Comments != null && Model.Comments.Any())
+    {
+        <ul class="space-y-4">
+            @foreach (var comment in Model.Comments)
+            {
+                <li class="bg-gray-100 p-4 rounded-lg">
+                    @* <div class="flex items-center">
+                        <a href="/detay/@comment.UserName">
+                        </a>
+                    </div> *@
+             @*        <div class="flex items-center justify-between mb-2">
+                        <span class="text-gray-700 font-semibold">@comment.UserName</span> @* burayı unutma  *@
+                     @* </div> *@
+               @*      <p class="text-gray-800">@comment.Comment</p>
+                    <span class="text-gray-500 text-sm">@comment.Created.ToString("dd.MM.yyyy HH:mm")</span>
+
+                </li> 
+             }  *@
+         @* </ul> *@
+@*      } 
+     else
+    {
+        <p class="text-gray-600">Henüz yorum yapılmamış.</p>
+    }  *@
+   
+
+
+<h1>@Model.Movie.Name</h1>
+<p>@Model.Movie.Summary</p>
+<h1>Oyuncular</h1>
+<strong>@Model.Movie.Actors</strong>
+
+<h2>Yorumlar</h2>
+@if (Model.Comments != null && Model.Comments.Any())
+{
+    <ul>
+        @foreach (var comment in Model.Comments)
+        {
+            <li>
+                <strong>@comment.UserName:</strong> @comment.Comment <br />
+                <small>@comment.Created.ToString("dd.MM.yyyy HH:mm")</small>
+            </li>
+        }
+    </ul>
+}
+else
+{
+    <p>Henüz yorum yapılmamış.</p>
+}
+
+     <form action="/yorumekle" method="post" autocomplete="off">
+        <div class="mb-4">
+        </div>
+        <div class="mb-4">
+            <textarea required name="Comment" placeholder="Yorum" class="w-full p-3 border rounded-lg focus:outline-none focus:ring focus:border-blue-300"></textarea>
+        </div>
+        <input type="hidden" name="Id" value="@Model.Movie.Id" />
+        <div class="text-right">
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600">Gönder</button>
+        </div>
+    </form> 
+     
+
+    }    
