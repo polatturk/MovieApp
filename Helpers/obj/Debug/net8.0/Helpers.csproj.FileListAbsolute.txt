@@ -1,0 +1,13 @@
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\bin\Debug\net8.0\Helpers.deps.json
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\bin\Debug\net8.0\Helpers.dll
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\bin\Debug\net8.0\Helpers.pdb
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.csproj.AssemblyReference.cache
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.AssemblyInfoInputs.cache
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.AssemblyInfo.cs
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.csproj.CoreCompileInputs.cache
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.sourcelink.json
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.dll
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\refint\Helpers.dll
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\Helpers.pdb
+C:\Users\Polat\OneDrive\Masaüstü\works\FilmElestiriSitesi-PRM-1\Helpers\obj\Debug\net8.0\ref\Helpers.dll
